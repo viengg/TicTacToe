@@ -11,23 +11,16 @@ import javax.swing.*;
  * @author Vien
  */
 public class Botao extends JButton{
-    private int x;
-    private int y;
+    private final Coordenada coordenada;
     
     Botao(int x, int y)
     {
         super();
-        this.x = x;
-        this.y = y;
+        coordenada = new Coordenada(x, y);
     }
     
-    public int getX()
+    public Coordenada getCoordenada()
     {
-        return x;
-    }
-    
-    public int getY()
-    {
-        return y;
+        return coordenada;
     }
 }
