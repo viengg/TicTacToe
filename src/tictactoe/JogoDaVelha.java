@@ -12,6 +12,7 @@ package tictactoe;
 public class JogoDaVelha {
     private final String grid[][];
     private final PlayerOponente ai;
+    private int turn;
     JogoDaVelha()
     {
         this.grid = new String[3][3];
@@ -35,6 +36,16 @@ public class JogoDaVelha {
         grid[y][x] = s;
     }
     
+    public void updateTurn()
+    {
+        turn++;
+    }
+    
+    public int getTurn()
+    {
+        return turn;
+    }
+     
     public boolean isValid(int x, int y)
     {
         return getPos(x, y).equals("");
@@ -84,6 +95,7 @@ public class JogoDaVelha {
                 grid[i][j] = "";
             }
         }
+        turn = 0;
     }
     
     @Override
