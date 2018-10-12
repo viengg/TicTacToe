@@ -33,6 +33,22 @@ public class manipuladorBotao implements ActionListener {
             System.exit(0);
         }
     }
+    
+    private void computaTurnoHumano(Botao buttonPressed)
+    {
+        buttonPressed.setText("O");
+        int x = buttonPressed.getCoordenada().getX();
+        int y = buttonPressed.getCoordenada().getY();
+        tabuleiro.setPos("O", x, y);
+        tabuleiro.incrementTurn();
+    }
+    
+    private void computaTurnoAI(Coordenada c)
+    {
+        gui.getButton(c.getX(), c.getY()).setText("X");
+        tabuleiro.setPos("X", c.getX(), c.getY());
+        tabuleiro.incrementTurn();
+    }
 
     @Override
     public void actionPerformed(ActionEvent event) 
@@ -41,38 +57,33 @@ public class manipuladorBotao implements ActionListener {
 
         if (buttonPressed.getText().equals("")) 
         {
-            tabuleiro.updateTurn();
-
-            buttonPressed.setText("O");
+            computaTurnoHumano(buttonPressed);
             int x = buttonPressed.getCoordenada().getX();
             int y = buttonPressed.getCoordenada().getY();
-            tabuleiro.setPos("O", x, y);
 
-            if (tabuleiro.hasWon(x, y)) 
+            if (tabuleiro.hasWon(x, y))
             {
                 showMenu("Você ganhou");
                 gui.comecaDenovo();
                 return;
             }
 
-            if (tabuleiro.getTurn() < 9) 
+            if (tabuleiro.getTurn() < 9) //Enquanto houveram casas disponiveis
             {
-                Coordenada c = tabuleiro.getAI().getMove();
-                tabuleiro.setPos("X", c.getX(), c.getY());
-                gui.getButton(c.getX(), c.getY()).setText("X");
-                tabuleiro.updateTurn();
+                Coordenada resposta = tabuleiro.getAI().getMove();
+                computaTurnoAI(resposta);
 
-                if (tabuleiro.hasWon(c.getX(), c.getY())) 
+                if (tabuleiro.hasWon(resposta.getX(), resposta.getY())) 
                 {
                     showMenu("Você perdeu");
                     gui.comecaDenovo();
                 }
-            } else 
+            } 
+            else 
             {
                 showMenu("Empate");
                 gui.comecaDenovo();
             }
-
         }
     }
 }

@@ -7,7 +7,7 @@ package tictactoe;
 
 /**
  *
- * @author M912
+ * @author Vien
  */
 public class JogoDaVelha {
     private final String grid[][];
@@ -36,7 +36,7 @@ public class JogoDaVelha {
         grid[y][x] = s;
     }
     
-    public void updateTurn()
+    public void incrementTurn()
     {
         turn++;
     }
@@ -56,6 +56,7 @@ public class JogoDaVelha {
         return ai;
     }
     
+    /*Verifica se o jogo foi ganho a partir de uma posição na vertical*/
     private boolean checkHorizontal(int y)
     {
         return getPos(0,y).equals(getPos(1,y)) && 
@@ -63,6 +64,7 @@ public class JogoDaVelha {
                 !getPos(0,y).equals("");
     }
     
+    /*Verifica se o jogo foi ganho a partir de uma posição na horizontal*/
     private boolean checkVertical(int x)
     {
         return getPos(x,0).equals(getPos(x,1)) && 
@@ -70,7 +72,8 @@ public class JogoDaVelha {
                 !getPos(x,0).equals("");
     }
     
-    private boolean checkDiagonal(int x, int y)
+    /*Verifica se o jogo foi ganho nas diagonais*/
+    private boolean checkDiagonal()
     {
         return (getPos(0,0).equals(getPos(1,1))&& 
                 getPos(1,1).equals(getPos(2,2))
@@ -83,7 +86,7 @@ public class JogoDaVelha {
     
     public boolean hasWon(int x, int y)
     {
-        return checkHorizontal(y) || checkVertical(x) || checkDiagonal(x,y);
+        return checkHorizontal(y) || checkVertical(x) || checkDiagonal();
     }
     
     public void reseta()

@@ -7,7 +7,7 @@ package tictactoe;
 
 /**
  *
- * @author M912
+ * @author Vien
  */
 public class Main {
 

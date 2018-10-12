@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 /**
  *
- * @author M912
+ * @author Vien
  */
 public class InterfaceGrafica extends JFrame{
     private final Container content;
