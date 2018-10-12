@@ -13,11 +13,11 @@ import javax.swing.JOptionPane;
  *
  * @author Vien
  */
-public class manipuladorBotao implements ActionListener {
+public class ManipuladorBotao implements ActionListener {
     private final JogoDaVelha tabuleiro;
     private final InterfaceGrafica gui;
     
-    manipuladorBotao(JogoDaVelha tabuleiro, InterfaceGrafica gui)
+    ManipuladorBotao(JogoDaVelha tabuleiro, InterfaceGrafica gui)
     {
         this.tabuleiro = tabuleiro;
         this.gui = gui;

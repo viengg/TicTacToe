@@ -37,7 +37,7 @@ public class InterfaceGrafica extends JFrame{
             for(int j = 0; j < 3; j++)
             {
                 buttons[i][j] = new Botao(j, i);
-                buttons[i][j].addActionListener(new manipuladorBotao
+                buttons[i][j].addActionListener(new ManipuladorBotao
                                                         (tabuleiro, this));
                 content.add(buttons[i][j]);
             }
