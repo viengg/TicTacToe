@@ -23,17 +23,6 @@ public class ManipuladorBotao implements ActionListener {
         this.gui = gui;
     }
     
-    private void showMenu(String resultado)
-    {
-        int choose = JOptionPane.showConfirmDialog(gui,
-                resultado + "!\nQuer continuar jogando?", "Escolha",
-                JOptionPane.YES_NO_OPTION);
-        if (choose == JOptionPane.NO_OPTION) 
-        {
-            System.exit(0);
-        }
-    }
-    
     private void computaTurnoHumano(Botao buttonPressed)
     {
         buttonPressed.setText("O");
@@ -63,8 +52,8 @@ public class ManipuladorBotao implements ActionListener {
 
             if (tabuleiro.hasWon(x, y))
             {
-                showMenu("Você ganhou");
-                gui.comecaDenovo();
+                JOptionPane.showMessageDialog(gui, "Você ganhou!");
+                gui.trocaPanel();
                 return;
             }
 
@@ -75,15 +64,15 @@ public class ManipuladorBotao implements ActionListener {
 
                 if (tabuleiro.hasWon(resposta.getX(), resposta.getY())) 
                 {
-                    showMenu("Você perdeu");
-                    gui.comecaDenovo();
+                    JOptionPane.showMessageDialog(gui, "Você perdeu!");
+                    gui.trocaPanel();
                 }
             } 
             else 
             {
-                showMenu("Empate");
-                gui.comecaDenovo();
-            }
+                JOptionPane.showMessageDialog(gui, "Empate!");
+                gui.trocaPanel();
+            }   
         }
     }
 }

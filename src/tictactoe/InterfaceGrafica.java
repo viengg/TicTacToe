@@ -12,17 +12,25 @@ import java.awt.*;
  */
 public class InterfaceGrafica extends JFrame{
     private final Container content;
+    private final Container buttonsPanel;
     private final Botao buttons[][];
     private final JogoDaVelha tabuleiro;
+    private final MenuInicial menu;
+    private final CardLayout cards;
 
     InterfaceGrafica()
     {
         super("Tic Tac Toe");
+        cards = new CardLayout();
         tabuleiro = new JogoDaVelha();
         content = getContentPane();
+        buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new GridLayout(3, 3, 5, 5));
+        menu = new MenuInicial(this);
         buttons = new Botao[3][3];
-        content.setLayout(new GridLayout(3, 3, 5, 5));
-        initializeButtons();  
+        content.setLayout(cards);
+        content.add(menu);
+        initializeButtons();
         pack();
         setSize(300,300);
         setLocationRelativeTo(null);
@@ -39,9 +47,10 @@ public class InterfaceGrafica extends JFrame{
                 buttons[i][j] = new Botao(j, i);
                 buttons[i][j].addActionListener(new ManipuladorBotao
                                                         (tabuleiro, this));
-                content.add(buttons[i][j]);
+                buttonsPanel.add(buttons[i][j]);
             }
         }
+        content.add(buttonsPanel);
     }
     
     public JogoDaVelha getTabuleiro()
@@ -70,4 +79,9 @@ public class InterfaceGrafica extends JFrame{
         reseta();
         tabuleiro.reseta();
     }
+    
+    public void trocaPanel()
+    {
+        cards.next(content);
+    }            
 }
